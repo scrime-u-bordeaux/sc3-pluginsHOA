@@ -1,9 +1,7 @@
 /* ------------------------------------------------------------
-author: "AmbisonicDecoderToolkit"
-copyright: "(c) Aaron J. Heller 2013", "(c) Florian Grond 2015"
-license: "GPL"
-name: "HOAmbiPanner4"
-version: "1.0"
+author: "Pierre Guillot, Eliott Paris"
+copyright: "2012-2015 Guillot, Paris, CICM, Labex Arts H2H, U. Paris 8"
+name: "HOALibInPhase3D4"
 Code generated with Faust 2.18.0 (https://faust.grame.fr)
 Compilation options: -lang cpp -scal -ftz 0
 ------------------------------------------------------------ */
@@ -681,14 +679,6 @@ private:
 #include <algorithm>
 #include <cmath>
 
-static float mydsp_faustpower2_f(float value) {
-	return (value * value);
-	
-}
-static float mydsp_faustpower4_f(float value) {
-	return (((value * value) * value) * value);
-	
-}
 
 #ifndef FAUSTCLASS 
 #define FAUSTCLASS mydsp
@@ -702,25 +692,26 @@ class mydsp : public dsp {
 	
  private:
 	
-	FAUSTFLOAT fHslider0;
-	float fRec0[2];
-	FAUSTFLOAT fHslider1;
-	float fRec1[2];
 	int fSampleRate;
 	
  public:
 	
 	void metadata(Meta* m) { 
-		m->declare("author", "AmbisonicDecoderToolkit");
-		m->declare("copyright", "(c) Aaron J. Heller 2013");
-		m->declare("filename", "HOAmbiPanner4.dsp");
-		m->declare("license", "GPL");
-		m->declare("name", "HOAmbiPanner4");
-		m->declare("version", "1.0");
+		m->declare("author", "Pierre Guillot, Eliott Paris");
+		m->declare("copyright", "2012-2015 Guillot, Paris, CICM, Labex Arts H2H, U. Paris 8");
+		m->declare("filename", "HOALibInPhase3D4.dsp");
+		m->declare("math.lib/author", "GRAME");
+		m->declare("math.lib/copyright", "GRAME");
+		m->declare("math.lib/deprecated", "This library is deprecated and is not maintained anymore. It will be removed in August 2017.");
+		m->declare("math.lib/license", "LGPL with exception");
+		m->declare("math.lib/name", "Math Library");
+		m->declare("math.lib/version", "1.0");
+		m->declare("name", "HOALibInPhase3D4");
+		m->declare("title", "High Order Ambisonics library");
 	}
 
 	virtual int getNumInputs() {
-		return 1;
+		return 25;
 		
 	}
 	virtual int getNumOutputs() {
@@ -731,6 +722,102 @@ class mydsp : public dsp {
 		int rate;
 		switch (channel) {
 			case 0: {
+				rate = 1;
+				break;
+			}
+			case 1: {
+				rate = 1;
+				break;
+			}
+			case 2: {
+				rate = 1;
+				break;
+			}
+			case 3: {
+				rate = 1;
+				break;
+			}
+			case 4: {
+				rate = 1;
+				break;
+			}
+			case 5: {
+				rate = 1;
+				break;
+			}
+			case 6: {
+				rate = 1;
+				break;
+			}
+			case 7: {
+				rate = 1;
+				break;
+			}
+			case 8: {
+				rate = 1;
+				break;
+			}
+			case 9: {
+				rate = 1;
+				break;
+			}
+			case 10: {
+				rate = 1;
+				break;
+			}
+			case 11: {
+				rate = 1;
+				break;
+			}
+			case 12: {
+				rate = 1;
+				break;
+			}
+			case 13: {
+				rate = 1;
+				break;
+			}
+			case 14: {
+				rate = 1;
+				break;
+			}
+			case 15: {
+				rate = 1;
+				break;
+			}
+			case 16: {
+				rate = 1;
+				break;
+			}
+			case 17: {
+				rate = 1;
+				break;
+			}
+			case 18: {
+				rate = 1;
+				break;
+			}
+			case 19: {
+				rate = 1;
+				break;
+			}
+			case 20: {
+				rate = 1;
+				break;
+			}
+			case 21: {
+				rate = 1;
+				break;
+			}
+			case 22: {
+				rate = 1;
+				break;
+			}
+			case 23: {
+				rate = 1;
+				break;
+			}
+			case 24: {
 				rate = 1;
 				break;
 			}
@@ -866,20 +953,10 @@ class mydsp : public dsp {
 	}
 	
 	virtual void instanceResetUserInterface() {
-		fHslider0 = FAUSTFLOAT(0.0f);
-		fHslider1 = FAUSTFLOAT(0.0f);
 		
 	}
 	
 	virtual void instanceClear() {
-		for (int l0 = 0; (l0 < 2); l0 = (l0 + 1)) {
-			fRec0[l0] = 0.0f;
-			
-		}
-		for (int l1 = 0; (l1 < 2); l1 = (l1 + 1)) {
-			fRec1[l1] = 0.0f;
-			
-		}
 		
 	}
 	
@@ -903,19 +980,37 @@ class mydsp : public dsp {
 	}
 	
 	virtual void buildUserInterface(UI* ui_interface) {
-		ui_interface->openVerticalBox("HOAmbiPanner4");
-		ui_interface->declare(&fHslider0, "1", "");
-		ui_interface->declare(&fHslider0, "unit", "rad");
-		ui_interface->addHorizontalSlider("azi", &fHslider0, 0.0f, -3.14159274f, 3.14159274f, 1.00000001e-07f);
-		ui_interface->declare(&fHslider1, "2", "");
-		ui_interface->declare(&fHslider1, "unit", "rad");
-		ui_interface->addHorizontalSlider("ele", &fHslider1, 0.0f, -1.57079637f, 1.57079637f, 1.00000001e-07f);
+		ui_interface->openVerticalBox("HOALibInPhase3D4");
 		ui_interface->closeBox();
 		
 	}
 	
 	virtual void compute(int count, FAUSTFLOAT** inputs, FAUSTFLOAT** outputs) {
 		FAUSTFLOAT* input0 = inputs[0];
+		FAUSTFLOAT* input1 = inputs[1];
+		FAUSTFLOAT* input2 = inputs[2];
+		FAUSTFLOAT* input3 = inputs[3];
+		FAUSTFLOAT* input4 = inputs[4];
+		FAUSTFLOAT* input5 = inputs[5];
+		FAUSTFLOAT* input6 = inputs[6];
+		FAUSTFLOAT* input7 = inputs[7];
+		FAUSTFLOAT* input8 = inputs[8];
+		FAUSTFLOAT* input9 = inputs[9];
+		FAUSTFLOAT* input10 = inputs[10];
+		FAUSTFLOAT* input11 = inputs[11];
+		FAUSTFLOAT* input12 = inputs[12];
+		FAUSTFLOAT* input13 = inputs[13];
+		FAUSTFLOAT* input14 = inputs[14];
+		FAUSTFLOAT* input15 = inputs[15];
+		FAUSTFLOAT* input16 = inputs[16];
+		FAUSTFLOAT* input17 = inputs[17];
+		FAUSTFLOAT* input18 = inputs[18];
+		FAUSTFLOAT* input19 = inputs[19];
+		FAUSTFLOAT* input20 = inputs[20];
+		FAUSTFLOAT* input21 = inputs[21];
+		FAUSTFLOAT* input22 = inputs[22];
+		FAUSTFLOAT* input23 = inputs[23];
+		FAUSTFLOAT* input24 = inputs[24];
 		FAUSTFLOAT* output0 = outputs[0];
 		FAUSTFLOAT* output1 = outputs[1];
 		FAUSTFLOAT* output2 = outputs[2];
@@ -941,65 +1036,32 @@ class mydsp : public dsp {
 		FAUSTFLOAT* output22 = outputs[22];
 		FAUSTFLOAT* output23 = outputs[23];
 		FAUSTFLOAT* output24 = outputs[24];
-		float fSlow0 = (0.00100000005f * float(fHslider0));
-		float fSlow1 = (0.00100000005f * float(fHslider1));
 		for (int i = 0; (i < count); i = (i + 1)) {
-			float fTemp0 = float(input0[i]);
-			output0[i] = FAUSTFLOAT(fTemp0);
-			fRec0[0] = (fSlow0 + (0.999000013f * fRec0[1]));
-			float fTemp1 = std::sin(fRec0[0]);
-			float fTemp2 = (fTemp0 * fTemp1);
-			fRec1[0] = (fSlow1 + (0.999000013f * fRec1[1]));
-			float fTemp3 = std::cos(fRec1[0]);
-			float fTemp4 = (fTemp2 * fTemp3);
-			output1[i] = FAUSTFLOAT(fTemp4);
-			float fTemp5 = std::sin(fRec1[0]);
-			float fTemp6 = (fTemp0 * fTemp5);
-			output2[i] = FAUSTFLOAT(fTemp6);
-			float fTemp7 = (fTemp0 * fTemp3);
-			float fTemp8 = std::cos(fRec0[0]);
-			float fTemp9 = (fTemp7 * fTemp8);
-			output3[i] = FAUSTFLOAT(fTemp9);
-			float fTemp10 = (fTemp2 * mydsp_faustpower2_f(fTemp3));
-			float fTemp11 = (fTemp10 * fTemp8);
-			output4[i] = FAUSTFLOAT((1.73205078f * fTemp11));
-			float fTemp12 = (fTemp4 * fTemp5);
-			output5[i] = FAUSTFLOAT((1.73205078f * fTemp12));
-			float fTemp13 = mydsp_faustpower2_f(fTemp5);
-			output6[i] = FAUSTFLOAT((0.5f * (fTemp0 * ((3.0f * fTemp13) + -1.0f))));
-			float fTemp14 = ((fTemp7 * fTemp5) * fTemp8);
-			output7[i] = FAUSTFLOAT((1.73205078f * fTemp14));
-			float fTemp15 = mydsp_faustpower2_f((fTemp3 * fTemp8));
-			float fTemp16 = (fTemp1 * fTemp3);
-			float fTemp17 = mydsp_faustpower2_f(fTemp16);
-			float fTemp18 = (fTemp15 - fTemp17);
-			float fTemp19 = (fTemp0 * fTemp18);
-			output8[i] = FAUSTFLOAT((0.866025388f * fTemp19));
-			float fTemp20 = ((3.0f * fTemp15) - fTemp17);
-			output9[i] = FAUSTFLOAT((0.790569425f * (fTemp4 * fTemp20)));
-			output10[i] = FAUSTFLOAT((3.87298346f * ((fTemp10 * fTemp5) * fTemp8)));
-			float fTemp21 = (5.0f * fTemp13);
-			float fTemp22 = (fTemp21 + -1.0f);
-			output11[i] = FAUSTFLOAT((0.612372458f * (fTemp4 * fTemp22)));
-			output12[i] = FAUSTFLOAT((0.5f * (fTemp6 * (fTemp21 + -3.0f))));
-			output13[i] = FAUSTFLOAT((0.612372458f * (fTemp9 * fTemp22)));
-			output14[i] = FAUSTFLOAT((1.93649173f * (fTemp6 * fTemp18)));
-			float fTemp23 = (fTemp15 - (3.0f * fTemp17));
-			output15[i] = FAUSTFLOAT((0.790569425f * (fTemp9 * fTemp23)));
-			output16[i] = FAUSTFLOAT((2.95804f * (fTemp11 * fTemp18)));
-			output17[i] = FAUSTFLOAT((2.09165001f * (fTemp12 * fTemp20)));
-			float fTemp24 = (7.0f * fTemp13);
-			float fTemp25 = (fTemp24 + -1.0f);
-			output18[i] = FAUSTFLOAT((1.11803401f * (fTemp11 * fTemp25)));
-			float fTemp26 = (fTemp24 + -3.0f);
-			output19[i] = FAUSTFLOAT((0.790569425f * (fTemp12 * fTemp26)));
-			output20[i] = FAUSTFLOAT((0.125f * (fTemp0 * ((fTemp13 * ((35.0f * fTemp13) + -30.0f)) + 3.0f))));
-			output21[i] = FAUSTFLOAT((0.790569425f * (fTemp14 * fTemp26)));
-			output22[i] = FAUSTFLOAT((0.559017003f * (fTemp19 * fTemp25)));
-			output23[i] = FAUSTFLOAT((2.09165001f * (fTemp14 * fTemp23)));
-			output24[i] = FAUSTFLOAT((0.73951f * (fTemp0 * ((fTemp15 * (fTemp15 - (6.0f * fTemp17))) + mydsp_faustpower4_f(fTemp16)))));
-			fRec0[1] = fRec0[0];
-			fRec1[1] = fRec1[0];
+			output0[i] = FAUSTFLOAT(float(input0[i]));
+			output1[i] = FAUSTFLOAT((0.800000012f * float(input1[i])));
+			output2[i] = FAUSTFLOAT((0.800000012f * float(input2[i])));
+			output3[i] = FAUSTFLOAT((0.800000012f * float(input3[i])));
+			output4[i] = FAUSTFLOAT((0.400000006f * float(input4[i])));
+			output5[i] = FAUSTFLOAT((0.400000006f * float(input5[i])));
+			output6[i] = FAUSTFLOAT((0.400000006f * float(input6[i])));
+			output7[i] = FAUSTFLOAT((0.400000006f * float(input7[i])));
+			output8[i] = FAUSTFLOAT((0.400000006f * float(input8[i])));
+			output9[i] = FAUSTFLOAT((0.114285715f * float(input9[i])));
+			output10[i] = FAUSTFLOAT((0.114285715f * float(input10[i])));
+			output11[i] = FAUSTFLOAT((0.114285715f * float(input11[i])));
+			output12[i] = FAUSTFLOAT((0.114285715f * float(input12[i])));
+			output13[i] = FAUSTFLOAT((0.114285715f * float(input13[i])));
+			output14[i] = FAUSTFLOAT((0.114285715f * float(input14[i])));
+			output15[i] = FAUSTFLOAT((0.114285715f * float(input15[i])));
+			output16[i] = FAUSTFLOAT((0.0142857144f * float(input16[i])));
+			output17[i] = FAUSTFLOAT((0.0142857144f * float(input17[i])));
+			output18[i] = FAUSTFLOAT((0.0142857144f * float(input18[i])));
+			output19[i] = FAUSTFLOAT((0.0142857144f * float(input19[i])));
+			output20[i] = FAUSTFLOAT((0.0142857144f * float(input20[i])));
+			output21[i] = FAUSTFLOAT((0.0142857144f * float(input21[i])));
+			output22[i] = FAUSTFLOAT((0.0142857144f * float(input22[i])));
+			output23[i] = FAUSTFLOAT((0.0142857144f * float(input23[i])));
+			output24[i] = FAUSTFLOAT((0.0142857144f * float(input24[i])));
 			
 		}
 		
